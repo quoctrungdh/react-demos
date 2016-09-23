@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>React Tutorial</title>
+    <!-- Not present in the tutorial. Just for basic styling. -->
+    <link rel="stylesheet" href="css/base.css" />
+    <script src="https://unpkg.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/babel">
+
+    // var PRODUCTS = [
+    //   {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
+    //   {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
+    //   {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
+    //   {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
+    //   {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
+    //   {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
+    // ];
+    //
+    // var FilterableProductTable = React.createClass({
+    //   getInitialState: function() {
+    //     return {
+    //       filterText: '',
+    //       inStockOnly: false
+    //     };
+    //   },
+    //   handleUserInput: function(filterText, inStockOnly) {
+    //     this.setState({
+    //       filterText: filterText,
+    //       inStockOnly: inStockOnly
+    //     });
+    //   },
+    //   render: function() {
+    //     return (
+    //       <div>
+    //         <SearchBar
+    //           filterText={this.state.filterText}
+    //           inStockOnly={this.state.inStockOnly}
+    //           onUserInput={this.handleUserInput}
+    //         />
+    //         <ProductTable
+    //           products={this.props.products}
+    //           filterText={this.state.filterText}
+    //           inStockOnly={this.state.inStockOnly}
+    //         />
+    //       </div>
+    //     );
+    //   }
+    // });
+    //
+    // var SearchBar = React.createClass({
+    //   handleChange: function() {
+    //     this.props.onUserInput(
+    //       this.refs.filterTextInput.value,
+    //       this.refs.inStockOnlyInput.checked
+    //     );
+    //   },
+    //   render: function() {
+    //     return (
+    //       <form action="">
+    //         <input
+    //           type="text"
+    //           placeholder="Search..."
+    //           value={this.props.filterText}
+    //           ref="filterTextInput"
+    //           onChange={this.handleChange}/>
+    //         <p>
+    //           <input
+    //             type="checkbox"
+    //             checked={this.props.inStockOnly}
+    //             ref="inStockOnlyInput"
+    //             onChange={this.handleChange}/>
+    //           {' '}
+    //           Only show products in stock
+    //         </p>
+    //       </form>
+    //     );
+    //   }
+    // });
+    //
+    // var ProductTable = React.createClass({
+    //   render: function() {
+    //     var rows = [];
+    //     var lastCategory = null;
+    //     this.props.products.forEach(function(product) {
+    //       if(product.name.indexOf(this.props.filterText) === -1 || (!product.stocked && this.props.inStockOnly)) {
+    //         return;
+    //       }
+    //       if(product.category !== lastCategory) {
+    //         rows.push(<ProductCategoryRow category={product.category} key={product.category} />);
+    //       }
+    //       rows.push(<ProductRow product={product} key={product.name} />);
+    //       lastCategory = product.category;
+    //     }.bind(this));
+    //     return (
+    //       <table>
+    //         <thead>
+    //           <tr>
+    //             <th>Name</th>
+    //             <th>Price</th>
+    //           </tr>
+    //         </thead>
+    //         <tbody>{rows}</tbody>
+    //       </table>
+    //     )
+    //   }
+    // });
+    //
+    // var ProductCategoryRow = React.createClass({
+    //   render: function() {
+    //     return (
+    //       <tr>
+    //         <th>
+    //           {this.props.category}
+    //         </th>
+    //       </tr>
+    //     );
+    //   }
+    // });
+    //
+    // var ProductRow = React.createClass({
+    //   render: function() {
+    //     var name = this.props.product.stocked ?
+    //       this.props.product.name :
+    //       <span style={{color: 'red'}}>
+    //         {this.props.product.name}
+    //       </span>;
+    //       return (
+    //         <tr>
+    //           <td>{name}</td>
+    //           <td>{this.props.product.price}</td>
+    //         </tr>
+    //       );
+    //   }
+    // });
+    //
+    // ReactDOM.render(
+    //   <FilterableProductTable products={PRODUCTS}/>,
+    //   document.getElementById('content')
+    // );
+
+//     var HelloWorld = React.createClass({
+//   render: function() {
+//     return (
+//       <p>
+//         Hello, <input type="text" placeholder="Your name here" />!
+//         It is {this.props.date.toTimeString()}
+//       </p>
+//     );
+//   }
+// });
+//
+// setInterval(function() {
+//   ReactDOM.render(
+//     <HelloWorld date={new Date()} />,
+//     document.getElementById('content')
+//   );
+// }, 500);
+
+// class LikeButton extends React.Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       liked: false
+//     };
+//     this.handleClick = this.handleClick.bind(this);
+//   }
+//
+//   handleClick () {
+//     this.setState({liked: !this.state.liked});
+//   }
+//
+//   render() {
+//     const text = this.state.liked ? 'liked' : 'haven\'t liked';
+//     return (
+//       <div onClick={this.handleClick}>
+//         You {text} this. Click to toggle.
+//       </div>
+//     );
+//   }
+// }
+//
+// ReactDOM.render(
+//   <LikeButton />,
+//   document.getElementById('content')
+// );
+
+// var Avatar = React.createClass({
+//   render: function() {
+//     return (
+//       <div>
+//         <PagePic pagename={this.props.pagename} />
+//         <PageLink pagename={this.props.pagename} />
+//       </div>
+//     );
+//   }
+// });
+//
+// var PagePic = React.createClass({
+//   render: function() {
+//     return (
+//       <img src={'https://graph.facebook.com/' + this.props.pagename + '/picture'} alt="fb pic"/>
+//     );
+//   }
+// });
+//
+// var PageLink = React.createClass({
+//   render: function() {
+//     return (
+//       <a href={'https://www.facebook.com/' + this.props.pagename} >
+//         {this.props.pagename}
+//       </a>
+//     );
+//   }
+// });
+//
+//
+// ReactDOM.render(
+//   <Avatar pagename="Engineering" />,
+//   document.getElementById('content')
+// );
+
+
+// var SetIntervalMixin = {
+//
+//   componentWillMount: function() {
+//     this.intervals = [];
+//   },
+//
+//   setInterval: function() {
+//     this.intervals.push(setInterval.apply(null,arguments));
+//   },
+//
+//   componentWillUnmount: function() {
+//     this.intervals.forEach(clearInterval);
+//   }
+// };
+//
+// var TickTock = React.createClass({
+//
+//   mixins: [SetIntervalMixin],
+//
+//   getInitialState: function() {
+//     return {seconds: 0};
+//   },
+//
+//   componentDidMount: function() {
+//     this.setInterval(this.tick, 1000);
+//   },
+//   tick: function() {
+//     this.setState({seconds: this.state.seconds + 1});
+//   },
+//   render: function() {
+//     return (
+//       <p>
+//         React has been running for {this.state.seconds} seconds.
+//       </p>
+//     );
+//   }
+// });
+//
+// ReactDOM.render(
+//   <TickTock />,
+//   document.getElementById('content')
+// );
+
+
+// class Counter extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {count: props.initialCount};
+//     this.tick = this.tick.bind(this);
+//   }
+//   tick() {
+//     this.setState({count: this.state.count + 1});
+//   }
+//   render() {
+//     return (
+//       <div onClick={this.tick}>
+//         Clicks: {this.state.count}
+//       </div>
+//     );
+//   }
+// }
+// Counter.propTypes = { initialCount: React.PropTypes.number };
+// Counter.defaultProps = { initialCount: 0 };
+//
+//
+// ReactDOM.render(
+//   <Counter />,
+//   document.getElementById('content')
+// );
+
+
+function FancyCheckbox(props) {
+  var fancyClass = props.checked ? 'FancyChecked' : 'FancyUnchecked';
+  return (
+    <div className={fancyClass} onClick={props.onClick}>
+      {props.children}
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <FancyCheckbox checked={true} onClick={console.log.bind(console)}>
+  </FancyCheckbox>,
+  document.getElementById('content')
+);
+
+
+    </script>
+  </body>
+</html>
